@@ -89,7 +89,7 @@ class UserCrud {
 
             const resetToken = jwt.sign({ mail: userEmail }, process.env.secretKey as string, { expiresIn: '1h' });
             const subject = "Password Reset Request"
-            const text = `To reset your password, click on the following link:http://localhost:1400/api/reset-password/${resetToken}`
+            const text = `To reset your password, click on the following link:http://localhost:${process.env.PORT}/api/reset-password/${resetToken}`
             await EmailService.sendEmail(userEmail,subject, text);
 
             return res.status(200).json({ message: 'Reset email sent successfully' });
